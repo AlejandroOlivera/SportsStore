@@ -1,8 +1,15 @@
-import { NgModule } from '@angular/core';
-import { ProductRepository } from './product.repository';
-import { StaticDataSource } from './static.datasource';
+import {NgModule} from '@angular/core';
+import {ProductRepository} from './product.repository';
+import {StaticDataSource} from './static.datasource';
+import {Cart} from './cart.model';
+import {Order} from './order.model';
+import {OrderRepository} from './order.repository';
+import {HttpClientModule} from '@angular/common/http';
+import {RestDatasource} from './rest.datasource';
 
 @NgModule({
-  providers: [ProductRepository, StaticDataSource],
+  imports:[HttpClientModule],
+  providers: [ProductRepository, StaticDataSource, Cart, Order, OrderRepository,{provide: StaticDataSource, useClass: RestDatasource}],
 })
-export class ModelModule {}
+export class ModelModule {
+}
